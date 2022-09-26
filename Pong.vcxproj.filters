@@ -26,5 +26,11 @@
     <ClInclude Include="bat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\bat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\ball.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

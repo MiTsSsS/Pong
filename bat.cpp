@@ -1,4 +1,4 @@
-#include <M:\GameDevelopment\VS-Projects\Pong\bat.h>
+#include "headers/bat.h"
 
 Bat::Bat(float x, float y) {
 	position.x = x;
