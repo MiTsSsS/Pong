@@ -3,12 +3,7 @@
 #include <SFML/Audio.hpp>
 
 class AssetLoader {
-private:
-	std::string assetName;
-	sf::Font font;
-	sf::Sound sound;
-
 public:
-	void loadSoundFromFile();
-	void loadFontFromFile();
+	void loadFontFromFile(sf::Font&, std::string);
+	void loadSoundFromFile(sf::SoundBuffer&, std::string);
 };

@@ -1,8 +1,10 @@
 #include "headers/bat.h"
 #include "headers/ball.h"
+#include "headers/AssetLoader.h"
 #include <iostream>
 #include <sstream>
-#include <SFML/Graphics.hpp>
+//#include <SFML/Audio.hpp>
+//#include <SFML/Graphics.hpp>
 
 int main() {
 	int windowHeight = 768;
@@ -15,19 +17,25 @@ int main() {
 
 	Bat bat(windowWidth / 2, windowHeight - 20);
 	Ball ball(windowWidth / 2, 1);
+	AssetLoader assetLoader;
 
 	sf::Text hud;
 	
 	sf::Font font;
-	if (!font.loadFromFile("Assets\\Fonts\\DS-DIGIT.ttf"))
-	{
-		std::cout << "ERROR LOADING FONT... " << std::endl;
-		return -1;
-	}
+	assetLoader.loadFontFromFile(font, "Assets\\Fonts\\DS-DIGIT.ttf");
 
 	hud.setFont(font);
 	hud.setCharacterSize(75);
 	hud.setFillColor(sf::Color::White);
+
+	sf::Sound sound;
+	sf::SoundBuffer hitPaddle;
+	sf::SoundBuffer hitWall;
+	sf::SoundBuffer lose;
+
+	assetLoader.loadSoundFromFile(hitPaddle, "Assets\\Sounds\\HitPaddle.wav");
+	assetLoader.loadSoundFromFile(hitWall, "Assets\\Sounds\\HitWall.wav");
+	assetLoader.loadSoundFromFile(lose, "Assets\\Sounds\\Lose.wav");
 
 	while (window.isOpen()) {
 		sf::Event event;
@@ -52,6 +60,8 @@ int main() {
 
 		if (ball.getPosition().top > windowHeight) {
 			ball.hitBottom();
+			sound.setBuffer(lose);
+			sound.play();
 
 			lives--;
 			if (lives < 1) {
@@ -61,16 +71,25 @@ int main() {
 		}
 
 		if (ball.getPosition().top < 0) {
+			sound.setBuffer(hitPaddle);
+			sound.play();
+
 			ball.reboundBatOrTop();
 			score++;
 		}
 		
 		//Left + 10 cause getPosition().left returns the left coordinate of the triangle and 10 is the width of the triangle.
 		if (ball.getPosition().left < 0 || ball.getPosition().left + 10 > windowWidth) { 
+			sound.setBuffer(hitWall);
+			sound.play();
+
 			ball.reboundSides();
 		}
 
 		if (ball.getPosition().intersects(bat.getPosition())) {
+			sound.setBuffer(hitPaddle);
+			sound.play();
+
 			ball.reboundBatOrTop();
 		}
 

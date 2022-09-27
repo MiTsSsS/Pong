@@ -118,7 +118,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>M:\GameDevelopment\SFML_Framework\SFML-2.5.1-windows-vc15-64-bit\SFML-2.5.1\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;$(CoreLibraryDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;$(CoreLibraryDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,9 +144,9 @@
     <ClInclude Include="Headers\AssetLoader.h" />
     <ClInclude Include="Headers\ball.h" />
     <ClInclude Include="Headers\bat.h" />
-    <ClInclude Include="Source\AssetLoader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\AssetLoader.cpp" />
     <ClCompile Include="Source\ball.cpp" />
     <ClCompile Include="Source\bat.cpp" />
     <ClCompile Include="Source\main.cpp" />
