@@ -11,6 +11,7 @@ int main() {
 	int windowWidth = 1024;
 
 	sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Pong");
+	window.setFramerateLimit(60);
 
 	int score = 0;
 	int lives = 3;
@@ -19,14 +20,23 @@ int main() {
 	Ball ball(windowWidth / 2, 1);
 	AssetLoader assetLoader;
 
-	sf::Text hud;
+	sf::Text scoreCounter;
+	sf::Text livesCounter;
 	
 	sf::Font font;
 	assetLoader.loadFontFromFile(font, "Assets\\Fonts\\DS-DIGIT.ttf");
 
-	hud.setFont(font);
-	hud.setCharacterSize(75);
-	hud.setFillColor(sf::Color::White);
+	scoreCounter.setFont(font);
+	scoreCounter.setCharacterSize(75);
+	scoreCounter.setFillColor(sf::Color::White);
+
+	livesCounter.setFont(font);
+	livesCounter.setCharacterSize(75);
+	livesCounter.setPosition(760, 0);
+	livesCounter.setFillColor(sf::Color::White);
+	
+	livesCounter.setString("Lives: " + std::to_string(lives));
+	scoreCounter.setString("Score: " + std::to_string(score));
 
 	sf::Sound sound;
 	sf::SoundBuffer hitPaddle;
@@ -64,9 +74,14 @@ int main() {
 			sound.play();
 
 			lives--;
+			livesCounter.setString("Lives: " + std::to_string(lives));
+
 			if (lives < 1) {
 				score = 0;
 				lives = 3;
+
+				livesCounter.setString("Lives: " + std::to_string(lives));
+				scoreCounter.setString("Score: " + std::to_string(score));
 			}
 		}
 
@@ -76,6 +91,7 @@ int main() {
 
 			ball.reboundBatOrTop();
 			score++;
+			scoreCounter.setString("Score: " + std::to_string(score));
 		}
 		
 		//Left + 10 cause getPosition().left returns the left coordinate of the triangle and 10 is the width of the triangle.
@@ -96,15 +112,11 @@ int main() {
 		ball.update();
 		bat.update();
 
-		std::stringstream ss;
-		ss << "Score:" << score << "\t\t\t\t\t\t\t  Lives:" << lives;
-		hud.setString(ss.str());
-
 		window.clear(sf::Color(26, 128, 182, 255));
-		
 		window.draw(bat.getShape());
 		window.draw(ball.getShape());
-		window.draw(hud);
+		window.draw(scoreCounter);
+		window.draw(livesCounter);
 
 		window.display();
 	}

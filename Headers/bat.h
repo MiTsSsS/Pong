@@ -5,7 +5,7 @@ class Bat {
 private:
 	sf::Vector2f position;
 	sf::RectangleShape batShape;
-	float speed{ .3f };
+	float speed{ 10.5f };
 
 public:
 	Bat(float startingX, float startingY);

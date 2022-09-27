@@ -6,8 +6,8 @@ private:
 	sf::Vector2f position;
 	sf::RectangleShape ballShape;
 	
-	float xVelocity = .2f;
-	float yVelocity = .2f;
+	float xVelocity = 8.5f;
+	float yVelocity = 8.5f;
 
 public:
 	Ball(float startX, float startY);
