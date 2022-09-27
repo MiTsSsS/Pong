@@ -8,7 +8,7 @@ private:
 	float speed{ .3f };
 
 public:
-	Bat(float initialX, float initialY);
+	Bat(float startingX, float startingY);
 	
 	sf::RectangleShape getShape();
 	sf::FloatRect getPosition();
@@ -16,5 +16,4 @@ public:
 	void moveLeft();
 	void moveRight();
 	void update();
-
 };
