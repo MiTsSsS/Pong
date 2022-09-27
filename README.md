@@ -9,7 +9,7 @@ This project requires C++20 and SFML (Simple and Fast Multimedia Library)
   
 - [How to setup SFML](https://www.sfml-dev.org/tutorials/2.5/start-vc.php)
   
-You can clone this repo and run the project, it should run with no issues if you have SFML setup correctly.  
+You can clone this repo, run the project, and play some Pong! It should run with no issues if you have SFML setup correctly.  
 It might also benefit you if you want to learn SFML so feel free to modify the code!
 
 # Lessons Learned
