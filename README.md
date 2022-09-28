@@ -18,6 +18,7 @@ It might also benefit you if you want to learn SFML so feel free to modify the c
 - Displaying `sf::Text` on screen.
 - Loading and playing sound files using `sf::SoundBuffer` and `sf::Sound`.
 - Simple collision detection using `sf::FloatRect`.
+- Limiting FPS using `setFramerateLimit`.
 
 # Preview
 <p align="center">
